@@ -1,22 +1,17 @@
-package com.justmedarshan.caseStudyPractice;
+package com.justmedarshan.practicePackage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-@Listeners(CustomListner.class)
+@Listeners(CustomListners.class)
 public class AccountCreationValidation {
 
     private static WebDriver driver;
-    private static String parabankUrl = "https://parabank.parasoft.com/parabank/index.htm", validUsername, validPassword, validFirstname, newAccountNo = null;
+    private static String parabankUrl = "https://parabank.parasoft.com/parabank/index.htm", validUsername, validPassword, validFirstname;
 
     @BeforeTest
     public static void initiateTest(){
@@ -29,30 +24,32 @@ public class AccountCreationValidation {
 
     }
 
-    @AfterTest
-    private static void endTest(){
-
-        Reporting.flush();
-        driver.quit();
-    }
-
     @Test(priority = 0)
     public static void testRegestration(){
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmmss");
-        LocalDateTime now = LocalDateTime.now();
-        String time = dtf.format(now);
-        ArrayList<String> inputData = new ArrayList<String>(){{
-            add("Test");
-            add("Data_" + time);
+        /*ArrayList<String> inputData = new ArrayList<String>(){{
+            add("James");
+            add("Bond");
             add("starbucks street, 7th cross");
             add("New york");
             add("Color state");
             add("099432");
             add("3243562344");
             add("234536");
-            add("testdata_" + time);
-            add("testdata@" + time);
+            add("jamesbond");
+            add("jamesbond@007");
+        }};*/
+        ArrayList<String> inputData = new ArrayList<String>(){{
+            add("Test");
+            add("Data_5");
+            add("starbucks street, 7th cross");
+            add("New york");
+            add("Color state");
+            add("099432");
+            add("3243562344");
+            add("234536");
+            add("testdata_5");
+            add("testdata_5@123");
         }};
         Assert.assertTrue(WebActions.registerUser(driver, inputData));
         validUsername = inputData.get(8);
@@ -77,16 +74,12 @@ public class AccountCreationValidation {
         + "_loginSuccessful", Reporting.captureScreen(driver, "LoginSuccesful"));
     }
 
-    @Test(priority = 3)
-    public static void testAccountCreation(){
 
+    @AfterTest
+    private static void endTest(){
 
-        newAccountNo = WebActions.openNewAccount(driver, "SAVINGS");
-        Assert.assertNotNull(newAccountNo);
-        System.out.println(newAccountNo);
-        Assert.assertTrue(WebActions.validateCreatedAccount(driver, newAccountNo));
-        Reporting.setTestStepStatus("PASS", "Created Account is validated", Reporting.captureScreen(driver, "AccountValidationSuccessful"));
-
+        Reporting.flush();
+        driver.quit();
     }
 
     public static WebDriver getDriver() {

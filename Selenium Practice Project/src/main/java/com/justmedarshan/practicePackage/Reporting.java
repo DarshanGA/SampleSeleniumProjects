@@ -1,4 +1,4 @@
-package com.justmedarshan.caseStudyPractice;
+package com.justmedarshan.practicePackage;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 public class Reporting {
 

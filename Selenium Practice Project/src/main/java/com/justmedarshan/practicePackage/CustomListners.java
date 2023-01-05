@@ -1,4 +1,4 @@
-package com.justmedarshan.caseStudyPractice;
+package com.justmedarshan.practicePackage;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;

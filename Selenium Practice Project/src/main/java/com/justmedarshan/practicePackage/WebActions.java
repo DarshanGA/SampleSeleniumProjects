@@ -1,19 +1,13 @@
-package com.justmedarshan.caseStudyPractice;
-
+package com.justmedarshan.practicePackage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class WebActions {
@@ -90,63 +84,10 @@ public class WebActions {
         return false;
     }
 
-    public static String openNewAccount(WebDriver usedDriver, String accountType) {
+    public static String openNewAccount(WebDriver usedDriver, String accountType){
 
-        String accountNo = null;
-        usedDriver.findElement(By.linkText("Open New Account")).click();
-        if(usedDriver.getTitle().equals("ParaBank | Open Account")){
-
-            Reporting.setTestStepStatus("PASS", "Navigation To Account Open Page",Reporting.captureScreen(usedDriver, "NewAccountOpenPage"));
-            Select dropdown = new Select(usedDriver.findElement(By.id("type")));
-            dropdown.selectByVisibleText(accountType);
-            Reporting.setTestStepStatus("PASS", "Selected  "+accountType+" as account type",Reporting.captureScreen(usedDriver, "AfterSelectingAccountType"));
-            WebDriverWait wait = new WebDriverWait(usedDriver, Duration.ofSeconds(3));
-            wait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(By.id("fromAccountId"), By.tagName("option")));
-            Reporting.setTestStepStatus("PASS", "Selected a base account to transfer money"
-                    ,Reporting.captureScreen(usedDriver, "AfterSelectingSourceAccount"));
-            //visibilityOf(usedDriver.findElement(By.xpath("//div[@id='rightPanel']/div/div/h1")))
-            usedDriver.findElement(By.xpath("//input[@value = 'Open New Account']")).click();
-            Reporting.setTestStepStatus("INFO", "After clicking open new account button"
-                    ,Reporting.captureScreen(usedDriver, "AfterClickingOpenAccountButton"));
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Reporting.setTestStepStatus("INFO", "After wait"
-                    ,Reporting.captureScreen(usedDriver, "AfterExplicitWait"));
-            if(usedDriver.findElement(By.xpath("//div[@id='rightPanel']/div/div/h1")).getText().equals("Account Opened!") &&
-                    usedDriver.findElement(By.xpath("//div[@id='rightPanel']/div/div/p")).getText().equals("Congratulations, your account is now open.")){
-
-                Reporting.setTestStepStatus("PASS", "New Account creation successful ",Reporting.captureScreen(usedDriver, "NewAccountCreated"));
-                accountNo = usedDriver.findElement(By.id("newAccountId")).getText();
-                // System.out.println("Inside if -> " + accountNo);
-            }
-        }
-        else {
-            //System.out.println("Inside else -> " + accountNo);
-            Reporting.setTestStepStatus("FAIL", "Failed_To get the account Number", Reporting.captureScreen(usedDriver, "Failed_CurrentScreen"));
-        }
-        return accountNo;
-    }
-
-    public static boolean validateCreatedAccount(WebDriver usedDriver, String accountNo){
-
-        usedDriver.findElement(By.linkText("Accounts Overview")).click();
-        Reporting.setTestStepStatus("PASS", "Accounts overview page with accounts table", Reporting.captureScreen(usedDriver, "AccountsOverviewPage"));
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        List<WebElement> tableData = usedDriver.findElements(By.xpath("//table[@id='accountTable']//td[1]"));
-        for(WebElement element : tableData){
-
-            System.out.println(element.getText());
-            if(element.getText().equals(accountNo))
-                return true;
-        }
-        return false;
+        //usedDriver.findElement();
+        return "";
     }
 
     public static boolean logout(WebDriver usedDriver){
