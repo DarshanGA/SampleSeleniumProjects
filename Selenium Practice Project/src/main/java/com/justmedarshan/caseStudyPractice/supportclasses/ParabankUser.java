@@ -1,14 +1,16 @@
-package com.justmedarshan.caseStudyPractice;
+package com.justmedarshan.caseStudyPractice.supportclasses;
 
 public class ParabankUser {
 
     private String firstname, lastname, address, city , state , zipcode, phoneNo, ssn, username, password;
-    //private String firstname = null, lastname = null, address = null, city = null, state = null, zipcode = null, phoneNo = null, ssn = null, username = null, password = null;
+    private long createdAccountNumber;
+//private String firstname = null, lastname = null, address = null, city = null, state = null, zipcode = null, phoneNo = null, ssn = null, username = null, password = null;
 
     public ParabankUser(){
 
     }
 
+    /*  */
     public ParabankUser(String givenFirstname, String givenLastname, String givenAddress, String givenCity, String givenState, String givenZipcode, String givenPhonNo, String givenSsn
     ,String givenUsername, String givenPassword){
 
@@ -104,6 +106,14 @@ public class ParabankUser {
         this.password = password;
     }
 
+    public long getCreatedAccountNumber() {
+        return createdAccountNumber;
+    }
+
+    public void setCreatedAccountNumber(long createdAccountNumber) {
+        this.createdAccountNumber = createdAccountNumber;
+    }
+
     public String getUserDetails(int index){
 
         String returnData = null;
@@ -122,23 +132,62 @@ public class ParabankUser {
                 returnData = city;
                 break;
             case 4:
-                returnData = zipcode;
+                returnData = state;
                 break;
             case 5:
-                returnData = phoneNo;
+                returnData = zipcode;
                 break;
             case 6:
-                returnData = ssn;
+                returnData = phoneNo;
                 break;
             case 7:
-                returnData = username;
+                returnData = ssn;
                 break;
             case 8:
+                returnData = username;
+                break;
+            case 9:
                 returnData = password;
                 break;
-
         }
         return returnData;
+    }
+
+    public void setDataByIndex(int index, String data) {
+
+        switch (index) {
+
+            case 0:
+                this.firstname = data;
+                break;
+            case 1:
+                this.lastname = data;
+                break;
+            case 2:
+                this.address = data;
+                break;
+            case 3:
+                this.city = data;
+                break;
+            case 4:
+                this.state = data;
+                break;
+            case 5:
+                this.zipcode = data;
+                break;
+            case 6:
+                this.phoneNo = data;
+                break;
+            case 7:
+                this.ssn = data;
+                break;
+            case 8:
+                this.username = data;
+                break;
+            case 9:
+                this.password = data;
+                break;
+        }
     }
 
     @Override
@@ -154,6 +203,7 @@ public class ParabankUser {
                 ", ssn ='" + ssn + '\'' +
                 ", username ='" + username + '\'' +
                 ", password ='" + password + '\'' +
+                ", Created Account Number = " + createdAccountNumber + '\'' +
                 " } " ;
     }
 }

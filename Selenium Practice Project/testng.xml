@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test 'Create_New_Bank_Account' in multiple browsers.">
+    <test name="Test user login, in 'Chrome' browser.">
+        <classes>
+            <class name="com.justmedarshan.seleniumcasestudy.TestCreateNewAccountUsingChrome">
+            <methods>
+                <include name="testDriverInitialization" />
+                <include name="testNavigationToUrl" />
+                <include name="testRegisteredUserLogin"/>
+                <include name="testOpenNewAccount"/>
+                <include name="quitDriver"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

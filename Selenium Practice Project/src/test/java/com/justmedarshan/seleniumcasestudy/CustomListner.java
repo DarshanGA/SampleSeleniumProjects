@@ -1,8 +1,11 @@
-package com.justmedarshan.caseStudyPractice;
+package com.justmedarshan.seleniumcasestudy;
 
+import com.justmedarshan.caseStudyPractice.supportclasses.Reporting;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import java.io.IOException;
 
 public class CustomListner implements ITestListener {
 
@@ -19,9 +22,13 @@ public class CustomListner implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         //System.out.println("Test Failed!" + result.getMethod().getMethodName());
-
-        Reporting.setTestStepStatus("FAIL", "FailedAt_"+ result.getMethod().getMethodName(),
-                Reporting.captureScreen(AccountCreationValidation.getDriver(), "FailedAt_"+ result.getMethod().getMethodName()));
+        String meathodName = result.getMethod().getMethodName();
+        try {
+            Reporting.setTestStepStatus("FAIL", "FailedAt_"+ meathodName,
+                    Reporting.captureScreen(TestCreateNewAccountUsingChrome.getDriver(), "FailedAt_"+ meathodName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
